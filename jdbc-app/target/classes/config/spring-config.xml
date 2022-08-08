@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+  	<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+  	<property name="url" value="jdbc:oracle:thin:@localhost:1521:ORCL" />
+  	<property name="username" value="system" />
+  	<property name="password" value="orcl" />
+  </bean>
+  
+  <bean id="employeeDAO" class="app.matoshri.main.dao.EmployeeDaoImpl">
+        <property name="dataSource" ref="dataSource" />
+        <property name="insertQuery" ref="insertQuery" />
+    </bean>
+	
+  <bean id="insertQuery" class="java.lang.String">
+	<constructor-arg index="0">
+		<value>
+		<![CDATA[
+		INSERT INTO EMPLOYEE (EMPID,NAME,SALARY,DEPT)
+		VALUES (:EMPID,:NAME,:SALARY,:DEPT)
+		]]>
+		</value>
+	</constructor-arg>
+  </bean>
+  
+  <bean id="generateId" class="app.matoshri.main.dao.GenerateId">
+        <property name="dataSource" ref="dataSource" />
+        <property name="getPrimaryKey" ref="getKey" />
+    </bean>
+    
+    <bean id="getKey" class="java.lang.String">
+    	<constructor-arg index="0">
+    		<value>
+    		select max(empid) from employee
+    		</value>
+    	</constructor-arg>
+    </bean>
+</beans>
