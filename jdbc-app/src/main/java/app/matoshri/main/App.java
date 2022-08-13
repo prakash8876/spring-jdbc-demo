@@ -1,7 +1,5 @@
 package app.matoshri.main;
 
-import java.awt.geom.GeneralPath;
-
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -31,8 +29,8 @@ public class App
         emp.setSalary(60000);
         emp.setDept("HR");
         empDao.insertEmployee(emp);
-        
-        System.out.println("Employee Inserted: " + emp);
+        Employee insertedEmp = empDao.getInsertedEmp(emp.getEmpId());
+        System.out.println("Employee Inserted: " + insertedEmp);
         context.close();
 	}
 }
