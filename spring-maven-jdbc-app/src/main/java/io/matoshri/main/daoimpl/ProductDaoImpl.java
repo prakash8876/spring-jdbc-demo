@@ -18,9 +18,9 @@ public class ProductDaoImpl implements ProductDao {
 	private JdbcTemplate jdbcTemplate;
 	private static final Logger log = LoggerFactory.getLogger(ProductDaoImpl.class);
 	
-	private static final String insertQuery = "INSERT INTO PRODUCTS(ITEM, PRICE) VALUES(?,?)";
-	private static final String getAllQuery = "SELECT ID, ITEM, PRICE FROM PRODUCTS";
-	private static final String getItemQuery = "SELECT * FROM PRODUCTS WHERE ITEM = ?";
+	private static String insertQuery = null;
+	private static String getAllQuery = null;
+	private static String getItemQuery = null;
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -45,6 +45,18 @@ public class ProductDaoImpl implements ProductDao {
 		Product product = jdbcTemplate.queryForObject(getItemQuery, new ProductMapper(), item);
 		log.info("Fetched Product: {}", product);
 		return product;
+	}
+
+	public static void setInsertQuery(String insertQuery) {
+		ProductDaoImpl.insertQuery = insertQuery;
+	}
+
+	public static void setGetAllQuery(String getAllQuery) {
+		ProductDaoImpl.getAllQuery = getAllQuery;
+	}
+
+	public static void setGetItemQuery(String getItemQuery) {
+		ProductDaoImpl.getItemQuery = getItemQuery;
 	}
 
 }

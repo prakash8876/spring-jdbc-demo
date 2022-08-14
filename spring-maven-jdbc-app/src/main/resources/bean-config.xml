@@ -20,6 +20,25 @@
 		
 		<bean id="productImpl" class="io.matoshri.main.daoimpl.ProductDaoImpl">
 			<property name="dataSource" ref="dataSource" />
+			<property name="insertQuery" ref="insertQuery" />
+			<property name="getAllQuery" ref="getAllQuery" />
+			<property name="getItemQuery" ref="getItemQuery" />
+		</bean>
+		
+		<bean id="insertQuery" class="java.lang.String">
+			<constructor-arg  index="0">
+				<value><![CDATA[INSERT INTO PRODUCTS(ITEM, PRICE) VALUES(?,?)]]></value>
+			</constructor-arg>
+		</bean>
+		<bean id="getAllQuery" class="java.lang.String">
+			<constructor-arg  index="0">
+				<value><![CDATA[SELECT ID, ITEM, PRICE FROM PRODUCTS]]></value>
+			</constructor-arg>
+		</bean>
+		<bean id="getItemQuery" class="java.lang.String">
+			<constructor-arg  index="0">
+				<value><![CDATA[SELECT * FROM PRODUCTS WHERE ITEM = ?]]></value>
+			</constructor-arg>
 		</bean>
                 
 </beans>
