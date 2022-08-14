@@ -14,7 +14,6 @@ import io.matoshri.main.model.Product;
 
 public class ProductDaoImpl implements ProductDao {
 	
-	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
 	private static final Logger log = LoggerFactory.getLogger(ProductDaoImpl.class);
 	
@@ -23,7 +22,6 @@ public class ProductDaoImpl implements ProductDao {
 	private static String getItemQuery = null;
 
 	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
