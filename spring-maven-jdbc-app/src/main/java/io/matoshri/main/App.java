@@ -16,7 +16,7 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Started ..." );
-        ApplicationContext context = new ClassPathXmlApplicationContext("bean-config.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("config/bean-config.xml");
         ProductDaoImpl productImpl = (ProductDaoImpl) context.getBean("productImpl");
         
         productImpl.create("iPhone 12", 45500);

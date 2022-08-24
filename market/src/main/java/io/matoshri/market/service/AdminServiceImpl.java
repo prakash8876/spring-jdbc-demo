@@ -3,12 +3,12 @@ package io.matoshri.market.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.matoshri.market.commons.MarketConstants;
 import io.matoshri.market.entity.Admin;
 import io.matoshri.market.entity.Employee;
 import io.matoshri.market.exception.ResourceNotFoundException;
 import io.matoshri.market.repository.AdminRepository;
 import io.matoshri.market.repository.EmployeeRepository;
-import io.matoshri.market.util.MarketConstants;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2

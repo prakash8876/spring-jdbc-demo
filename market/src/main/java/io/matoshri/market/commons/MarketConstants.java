@@ -1,4 +1,4 @@
-package io.matoshri.market.util;
+package io.matoshri.market.commons;
 
 public class MarketConstants {
 	
