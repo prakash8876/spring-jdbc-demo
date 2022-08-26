@@ -2,8 +2,6 @@ package io.matoshri.main;
 
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

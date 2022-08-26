@@ -8,21 +8,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 
 import io.matoshri.testing.model.User;
 import io.matoshri.testing.repo.UserRepository;
 import io.matoshri.testing.service.UserService;
-import io.matoshri.testing.service.UserServiceImpl;
 
 @RunWith(SpringRunner.class)
 //@ExtendWith(SpringExtension.class)
