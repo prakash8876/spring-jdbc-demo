@@ -1,10 +1,11 @@
 package io.matoshri.market.service;
 
 import io.matoshri.market.entity.Customer;
+import io.matoshri.market.entity.dto.CustomerDto;
 
 public interface EmployeeService {
 	
-	void newCustomer(Customer customer);
+	void newCustomer(CustomerDto customer);
 	
 	void updateCustomerMobileNo(int customerId, String mobileNo);
 	

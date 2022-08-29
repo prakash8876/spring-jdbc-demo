@@ -1,10 +1,13 @@
 package io.matoshri.market.entity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,31 +22,39 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "customer_tbl")
+@Table(name = "invoice_tbl")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class Customer {
+public class Invoice {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "customer_id")
+	@Column(name = "invoice_id")
 	private Integer id;
 
-	@Column(name = "customer_name")
-	private String customerName;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "payment_type")
+	private PaymentType paymentType = PaymentType.CASH;
 
-	@Column(name = "customer_mobile")
-	private String custoemrMobileNo;
+	@Column(name = "total_amount")
+	private double totalAmount;
 
-	@Column(name = "custoerm_email")
-	private String customerEmail;
+	@Column(name = "discount")
+	private int discount;
+
+	@Column(name = "purchase_date")
+	private LocalDate purchaseDate;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "customer_fk")
+	private List<Customer> customer;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "product_fk")
-	private List<Product> products;
+	private List<Product> productList;
 
-//	private Photo photo; // add photo
+//	private File invoice;	// csv/pdf/excel/text
 
 }

@@ -1,17 +1,16 @@
 package io.matoshri.market.service;
 
-import io.matoshri.market.entity.Admin;
-import io.matoshri.market.entity.Employee;
-import io.matoshri.market.exception.ResourceNotFoundException;
+import java.util.List;
+
+import io.matoshri.market.entity.dto.AdminDto;
+import io.matoshri.market.entity.dto.EmployeeDto;
+import io.matoshri.market.entity.dto.ProductDto;
 
 public interface AdminService {
 	
-	void newAdmin(Admin admin);
+	void addAdmin(AdminDto admin);
 	
-	void newEmployee(Employee employee);
+	void addEmployeeList(List<EmployeeDto> employees);
 	
-	void updateEmployee(int employeeId, Employee employee) throws ResourceNotFoundException;
-	
-	void deleteEmployee(int employeeId) throws ResourceNotFoundException;
-
+	void addProductList(List<ProductDto> productList);
 }

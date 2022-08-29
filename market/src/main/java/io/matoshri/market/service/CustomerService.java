@@ -1,9 +1,11 @@
 package io.matoshri.market.service;
 
-import io.matoshri.market.entity.Product;
+import java.util.List;
+
+import io.matoshri.market.entity.dto.ProductDto;
 
 public interface CustomerService {
 	
-	void addProduct(Product product);
-	void removeProduct(int productId, Product product);
+	void addProducts(Integer customerId, List<ProductDto> productList);
+	void removeProductFromList(Integer customerId, Integer productId);
 }
