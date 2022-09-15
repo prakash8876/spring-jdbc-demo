@@ -1,29 +1,19 @@
 package io.matoshri.market.entity;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.Map;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Entity
-@Table(name = "customer_tbl")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
+@Entity
+@Table(name = "customer_tbl")
 public class Customer {
 
 	@Id
@@ -31,18 +21,22 @@ public class Customer {
 	@Column(name = "customer_id")
 	private Integer id;
 
-	@Column(name = "customer_name")
+	@NotNull
+	@Column(name = "customer_name", unique = true)
 	private String customerName;
 
-	@Column(name = "customer_mobile")
+	@NotNull
+	@Column(name = "customer_mobile", unique = true)
 	private String custoemrMobileNo;
 
+	@NotNull
 	@Column(name = "custoerm_email")
+	@Email
 	private String customerEmail;
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "product_fk")
-	private List<Product> products;
+//
+//	@Column(name="customer_products_list")
+//	private Map<Integer, BigDecimal> productList;
+	
 
 //	private Photo photo; // add photo
 

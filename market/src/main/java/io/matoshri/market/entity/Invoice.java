@@ -1,42 +1,43 @@
 package io.matoshri.market.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Map;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "invoice_tbl")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
+@Entity
+@Table(name = "invoice_tbl")
 public class Invoice {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "invoice_id")
+	@Column(name = "invoice_id", unique = true)
 	private Integer id;
 
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(name = "payment_type")
-	private PaymentType paymentType = PaymentType.CASH;
+	private PaymentType paymentType;
 
 	@Column(name = "total_amount")
 	private double totalAmount;
@@ -44,17 +45,26 @@ public class Invoice {
 	@Column(name = "discount")
 	private int discount;
 
-	@Column(name = "purchase_date")
+	@NotNull
+	@CreationTimestamp
+	@Column(name = "purchase_date", updatable = false)
 	private LocalDate purchaseDate;
+	
+	@NotNull
+	@Column(name="invoice_customer_id", updatable = false)
+	private Integer customerId;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "customer_fk")
-	private List<Customer> customer;
+//	@Column(name = "invoice_product_list")
+//	private Map<Integer, BigDecimal> productList;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "product_fk")
-	private List<Product> productList;
-
+	
 //	private File invoice;	// csv/pdf/excel/text
+	
+	public enum PaymentType {
+		
+		CASH, 
+		CARD;
+
+	}
 
 }
